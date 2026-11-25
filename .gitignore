@@ -151,6 +151,52 @@ vite.config.ts.timestamp-*
 # Turbo Repo (https://turborepo.dev/)
 .turbo
 
+
+# ==========================================
+# SMART TRAFFIC - CCT-UNI
+# ==========================================
+
+# Credenciales y configuraciones privadas
+.env
+.env.*
+!.env.example
+secrets.h
+credentials.h
+config.local.h
+wifi_credentials.h
+mqtt_credentials.h
+
+# Firmware ESP32
+*.bin
+*.elf
+*.hex
+*.map
+build/
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# Broker MQTT
+broker/passwd
+broker/passwd.txt
+broker/mosquitto.db
+broker/data/
+broker/logs/
+
+# Registros y exportaciones locales
+*.log
+exports/
+
+# Entornos de desarrollo
+.vscode/
+.idea/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+
 # Nx (https://nx.dev/)
 .nx/cache
 .nx/workspace-data
