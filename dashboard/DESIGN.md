@@ -30,11 +30,11 @@ Estas referencias son inspiración, no diseños para copiar.
 
 - Guinda institucional: #781D36
 - Dorado: #C9A45C
-- Fondo principal: #211E24
-- Superficies: #251E26
-- Texto principal: #F7F0E9
-- Texto secundario: #C4B8C1
-- Bordes: #674754
+- Fondo principal: #F7F1E8
+- Superficies: #FFFAF3
+- Texto principal: #29272B
+- Texto secundario: #655D5A
+- Bordes: #DED4C8
 
 ### Colores funcionales
 
@@ -84,8 +84,8 @@ del mismo tamaño.
 
 ## 6. Navegación
 
+- Inicio.
 - Simulador.
-- Explora.
 - Analiza.
 - Conectividad.
 - Aprende.
@@ -97,7 +97,7 @@ Se recomienda Lucide Icons.
 
 ### Tarjetas
 
-- Superficie oscura neutra.
+- Superficie crema clara.
 - Bordes discretos de 1px.
 - Radio de borde entre 8px y 12px.
 - Sombras suaves o inexistentes.
@@ -278,3 +278,7 @@ y la comunicación con el hardware.
 ## 15. Dirección visual V0.6
 
 Ciudad vectorial 2D desde arriba (SVG), con sombras discretas, vegetación natural, asfalto grafito, edificios crema y vehículos del mismo lenguaje visual. Evitar fondos urbanos fotorrealistas y efectos excesivos. Mantener el logo oficial y Smart Traffic tipográfico, sin referencias a eventos específicos. Priorizar mapa, estados y mascotas visibles en la primera pantalla cuando el tamaño lo permita. Las trayectorias son ilustrativas; no representan posiciones físicas medidas.
+
+## 16. Dirección aprobada V0.7 — Editorial Light
+
+Inicio independiente con presentación editorial, CTA Iniciar experiencia e ilustración vectorial. Simulador centrado en la ciudad, escenarios y controles; métricas y acceso a Telequito debajo. Analiza concentra gráficas y bitácora. Aprende conserva el reto de Telequita. Conectividad distingue simulación de hardware pendiente. Usar logo institucional sin sigla redundante, fondo crema, guinda como acento y espacio generoso. No usar referencias a eventos específicos. La ilustración vectorial existente es la base funcional; su refinamiento artístico continúa pendiente de revisión visual.
