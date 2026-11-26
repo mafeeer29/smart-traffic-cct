@@ -59,3 +59,49 @@
 .st-bottom{grid-template-columns:1fr 1fr}
 @media(max-width:1000px){.st-sidebar{width:184px}.st-brand strong{font-size:16px}.st-brand small{font-size:7px}.st-workspace{grid-template-columns:minmax(0,1.35fr) minmax(230px,1fr)}.lab-guide-main,.lab-quiz{grid-template-columns:70px 1fr;padding:10px}}
 @media(max-width:760px){.st-sidebar{width:100%}.st-brand{margin-bottom:10px}.st-content{padding:12px}.st-workspace,.st-bottom,.lab-guide{grid-template-columns:1fr}.st-map{width:100%;max-height:none;height:auto}.st-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}.st-metric{border-bottom:0;margin-right:5px;padding:4px}.st-metric svg,.st-metric .st-muted:last-child{display:none}.st-metric strong{font-size:20px}.lab-quiz{border-left:0;border-top:1px solid #ded5c4}}
+
+/* V0.4 — Night operations / technical cartography */
+.st-shell{--lab-bg:#10191e;--lab-surface:#18252c;--lab-line:#34454c;--lab-text:#eef2ed;--lab-muted:#a8b8bd;--lab-accent:#e4bd79;background:var(--lab-bg);color:var(--lab-text);color-scheme:dark}
+.st-main{background-color:var(--lab-bg);background-image:linear-gradient(90deg,#9bb5bc09 1px,transparent 1px),linear-gradient(#9bb5bc09 1px,transparent 1px);background-size:32px 32px}
+.st-sidebar{background:#25151e;border-right:1px solid #654052}
+.st-sidebar nav button.selected{background:#78334b;border-left:3px solid #e4bd79;border-radius:3px}
+.st-header{background:#10191e;border-color:var(--lab-line);color:var(--lab-text)}
+.st-shell .text-muted,.st-muted,.st-footer{color:var(--lab-muted)}
+.st-eyebrow,.lab-kicker{color:var(--lab-accent)}
+.st-hero h1{font-size:clamp(28px,3vw,44px);font-weight:800;letter-spacing:-1.8px}
+.st-hero{padding:9px 0 12px;position:relative}
+.st-hero:after{content:'';position:absolute;bottom:0;left:0;width:80px;height:2px;background:var(--lab-accent)}
+.st-scenario{border-color:var(--lab-line);padding:9px 0}
+.st-button{background:#1d2a31;color:#e8efed;border-color:#43555d}
+.st-button:hover{border-color:var(--lab-accent);background:#293b43}
+.st-button.active{background:var(--lab-accent);color:#282018;border-color:var(--lab-accent)}
+.st-metrics{background:#142127;border:1px solid var(--lab-line);padding:10px 14px;margin-bottom:14px;position:relative}
+.st-metric{border-color:var(--lab-line);padding:3px 14px 3px 0}
+.st-metric strong{font-size:32px;color:#f2f2e9;font-weight:500;letter-spacing:-1.3px}
+.st-metric svg{color:var(--lab-accent);opacity:1}
+.st-panel{background:var(--lab-surface);border-color:var(--lab-line);border-radius:4px;color:var(--lab-text)}
+.st-panel h2{font-weight:700}
+.st-map-panel{position:relative;background:#142127;border:1px solid #52646a;padding:14px;background-image:radial-gradient(#82999d26 1px,transparent 1px);background-size:12px 12px}
+.st-map-panel:before,.st-map-panel:after{content:'';position:absolute;width:19px;height:19px;pointer-events:none}
+.st-map-panel:before{left:0;top:0;border-left:2px solid var(--lab-accent);border-top:2px solid var(--lab-accent)}
+.st-map-panel:after{right:0;bottom:0;border-right:2px solid var(--lab-accent);border-bottom:2px solid var(--lab-accent)}
+.st-map-panel>div:first-child{background:#142127;padding-bottom:6px}
+.st-map-panel .text-brand-700{color:var(--lab-accent);font-family:'IBM Plex Mono',monospace;letter-spacing:1px}
+.st-map{filter:drop-shadow(0 8px 16px #0005);max-height:clamp(240px,calc(100dvh - 420px),520px)}
+.st-map-caption{background:#142127;padding:8px 0 0}
+.st-lane{border-color:var(--lab-line)}
+.st-lane .st-dot{box-shadow:0 0 7px currentColor}
+.st-timer{background:#10191e;border:1px solid #34454c}
+.st-timer .bg-line{background:#34454c}.st-timer .bg-brand-700{background:var(--lab-accent)}
+.st-decision{border-top:2px solid var(--lab-accent)}
+.st-decision>p:not(.st-muted){color:#c6d1d2}
+.st-demand>div>div{background:#34454c}.st-demand i{background:var(--lab-accent)}
+.lab-guide{background:#35252c;border-color:#624755;color:#f5eee6}
+.lab-quiz{background:#232c32;border-color:#624755}
+.lab-guide p{color:#d3d9d7}.lab-guide img{height:140px}
+.lab-options button{background:#18252c;color:#f2eee7;border-color:#536169}
+.lab-options button[aria-pressed=true]{background:#e4bd79;color:#282018;border-color:#e4bd79}
+.lab-events>div{border-color:var(--lab-line)}.lab-events time{color:var(--lab-accent)}
+.st-shell :focus-visible{outline-color:var(--lab-accent)}
+@media(max-width:760px){.st-map{max-height:none}.st-metric strong{font-size:22px}.st-metrics{padding:8px}.st-hero h1{font-size:29px}}
+@media(prefers-reduced-motion:reduce){.st-shell *{scroll-behavior:auto}}
