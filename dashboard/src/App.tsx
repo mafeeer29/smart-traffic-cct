@@ -1,128 +1,32 @@
-
-import {
-  ArrowUpRight,
-  RadioTower,
-  CarFront,
-  Activity,
-  Wifi,
-} from 'lucide-react'
-
-function App() {
-  return (
-    <main className="min-h-screen bg-canvas p-6 md:p-12">
-      <div className="mx-auto max-w-5xl">
-
-        {/* Identidad del proyecto */}
-        <header className="flex items-center justify-between
-                           border-b border-line pb-6">
-
-          <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center
-                            justify-center rounded-xl
-                            bg-brand-700 text-white">
-              <RadioTower size={26} />
-            </div>
-
-            <div>
-              <h1 className="font-display text-xl font-extrabold">
-                Smart Traffic<span className="text-brand-700">.</span>
-              </h1>
-
-              <p className="text-[10px] font-semibold
-                            tracking-[0.2em] text-muted">
-                CCT-UNI / MOBILITY LAB
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2 text-sm text-muted">
-            <Wifi size={16} />
-            <span>Modo simulación</span>
-          </div>
-
-        </header>
-
-        {/* Bienvenida */}
-        <section className="py-12">
-
-          <p className="mb-4 text-xs font-semibold
-                        tracking-[0.2em] text-brand-700">
-            TECNOLOGÍA EN MOVIMIENTO
-          </p>
-
-          <h2 className="font-display text-4xl font-extrabold
-                         leading-tight md:text-6xl">
-            Una ciudad que
-            <br />
-            <span className="text-brand-700">
-              aprende a moverse.
-            </span>
-          </h2>
-
-          <p className="mt-5 max-w-xl leading-relaxed text-muted">
-            Explora cómo las telecomunicaciones y el Internet
-            de las Cosas pueden transformar la movilidad urbana.
-          </p>
-
-          <button className="mt-7 inline-flex items-center gap-3
-                             rounded-lg bg-brand-700 px-5 py-3
-                             text-sm font-semibold text-white
-                             transition-colors hover:bg-brand-800">
-            Explorar sistema
-            <ArrowUpRight size={18} />
-          </button>
-
-        </section>
-
-        {/* Métricas de prueba */}
-        <section className="grid gap-4 sm:grid-cols-3">
-
-          <div className="rounded-xl border border-line
-                          bg-surface p-6">
-            <CarFront className="mb-5 text-brand-700" />
-            <p className="text-sm text-muted">
-              Vehículos detectados
-            </p>
-            <p className="mt-2 font-mono text-4xl font-semibold">
-              024
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-line
-                          bg-surface p-6">
-            <RadioTower className="mb-5 text-brand-700" />
-            <p className="text-sm text-muted">
-              Sensores activos
-            </p>
-            <p className="mt-2 font-mono text-4xl font-semibold">
-              4/4
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-line
-                          bg-surface p-6">
-            <Activity className="mb-5 text-brand-700" />
-            <p className="text-sm text-muted">
-              Estado del sistema
-            </p>
-            <p className="mt-2 font-display text-2xl font-bold
-                          text-traffic-green">
-              Operativo
-            </p>
-          </div>
-
-        </section>
-
-        <footer className="mt-10 border-t border-line
-                           pt-5 text-xs text-muted">
-          Smart Traffic · CCT-UNI · Open Day 2026
-          <br />
-          Prototipo visual con datos simulados.
-        </footer>
-
-      </div>
-    </main>
-  )
+import {useState} from 'react'
+import {Activity,CarFront,RadioTower,Pause,Play,RotateCcw,GraduationCap,Wifi,Timer} from 'lucide-react'
+import {BarChart,Bar,XAxis,YAxis,Tooltip,ResponsiveContainer,CartesianGrid} from 'recharts'
+import Sidebar from './components/layout/Sidebar'
+import Intersection from './components/traffic/Intersection'
+import {useTraffic,scenarios} from './hooks/useTraffic'
+import type {Page,Scenario} from './types/traffic'
+import './App.css'
+const titles:Record<Page,string>={dashboard:'Centro de control',intersection:'Intersección inteligente',statistics:'Estadísticas',connectivity:'Conectividad',learn:'Tu ciudad, tus decisiones'}
+const signalColors={verde:'#16a34a',amarillo:'#b8860b',rojo:'#dc2626'}
+function App(){
+ const [page,setPage]=useState<Page>('dashboard')
+ const traffic=useTraffic()
+ const {lanes,scenario,running,remaining,demand,tick}=traffic
+ const total=lanes.reduce((sum,l)=>sum+l.count,0)
+ const description=scenario==='punta'?'La demanda simulada es mayor en Norte y Sur. El ciclo les asigna más tiempo en verde.':scenario==='congestion'?'Este y Oeste tienen más demanda simulada. El ciclo prioriza ese sentido.':'La demanda simulada está equilibrada. Ambos sentidos reciben el mismo tiempo en verde.'
+ const chartData=lanes.map(l=>({via:l.direction,conteo:l.count}))
+ const metrics=[{label:'Detecciones simuladas',value:String(total).padStart(3,'0'),Icon:CarFront,note:'Desde el inicio del escenario'},{label:'Sensores virtuales',value:'4/4',Icon:RadioTower,note:'Una entrada por vía'},{label:'Cambio de fase',value:remaining+' s',Icon:Timer,note:running?'Simulación en curso':'Simulación pausada'}]
+ const map=<section className="st-panel"><div className="flex justify-between items-start gap-2"><div><h2>Intersección 01</h2><p className="st-muted mt-1">Vista urbana · cuatro vías</p></div><span className="text-xs font-semibold text-brand-700">SIMULACIÓN</span></div><Intersection lanes={lanes} demand={demand} running={running}/><p className="st-muted mt-3">Los vehículos ilustran la demanda del escenario; no representan posiciones medidas.</p></section>
+ const states=<section className="st-panel"><h2>Estado por vía</h2><p className="st-muted mt-1">Semáforos y detección virtual</p>{lanes.map(l=><div className="st-lane" key={l.direction}><div><strong>{l.direction}</strong><p className="st-muted">{l.detected?'Sensor activo':'Sin detección'}</p></div><div className="text-right"><span><i className="st-dot" style={{background:signalColors[l.signal]}}/>{l.signal}</span><p className="st-muted font-mono">{l.count} detecciones</p></div></div>)}<div className="st-timer"><p className="st-muted">SIGUIENTE FASE</p><strong>{remaining} s</strong><div className="h-1.5 mt-2 rounded bg-line overflow-hidden"><div className="h-full bg-brand-700 transition-all" style={{width:Math.min(100,remaining/14*100)+'%'}}/></div></div></section>
+ const chart=<section className="st-panel"><h2>Detecciones por vía</h2><p className="st-muted mt-1">Conteo acumulado simulado</p><div className="st-chart"><ResponsiveContainer width="100%" height="100%"><BarChart data={chartData} margin={{left:0,right:10,top:10,bottom:0}}><CartesianGrid vertical={false} stroke="#e4e7eb"/><XAxis dataKey="via" tick={{fontSize:12}}/><YAxis allowDecimals={false} width={34}/><Tooltip/><Bar dataKey="conteo" name="Detecciones" fill="#781d36" radius={[4,4,0,0]}/></BarChart></ResponsiveContainer></div></section>
+ const learn=<section className="st-panel st-learn"><GraduationCap size={36} className="text-brand-700 shrink-0"/><div><span className="st-eyebrow">APRENDE CON TELEQUITO Y TELEQUITA</span><p>{description}</p><p className="st-muted">En la maqueta, los sensores IR envían detecciones a los ESP32. MQTT permitirá comunicar los datos al dashboard.</p></div></section>
+ return <div className="st-shell"><Sidebar page={page} navigate={setPage}/><main className="st-main"><header className="st-header"><span className="text-muted">Mobility Lab / {titles[page]}</span><span className="flex items-center gap-2 font-medium"><span className="st-dot !mr-0 bg-gold"/>{running?'Simulación activa':'Simulación pausada'}</span></header><div className="st-content"><div className="st-hero"><div><span className="st-eyebrow">CCT-UNI / URBAN MOBILITY LAB</span><h1>{titles[page]}</h1><p>Monitorea. Comprende. Transforma.</p></div><div className="st-controls"><button className="st-button" onClick={()=>traffic.setRunning(!running)}>{running?<Pause size={15}/>:<Play size={15}/>} {running?'Pausar':'Continuar'}</button><button className="st-button" onClick={()=>traffic.chooseScenario(scenario)}><RotateCcw size={15}/>Reiniciar</button></div></div>
+ <section className="mb-5"><p className="st-muted mb-2">ESCENARIO DE DEMOSTRACIÓN</p><div className="st-controls">{(Object.keys(scenarios) as Scenario[]).map(s=><button key={s} aria-pressed={s===scenario} className={'st-button '+(s===scenario?'active':'')} onClick={()=>traffic.chooseScenario(s)}>{scenarios[s].label}</button>)}</div></section>
+ {page==='dashboard'&&<><div className="st-metrics">{metrics.map(({label,value,Icon,note})=><section className="st-panel st-metric" key={label}><div><p className="st-muted">{label}</p><strong>{value}</strong><p className="st-muted">{note}</p></div><Icon size={22}/></section>)}</div><div className="st-workspace">{map}{states}</div>{learn}<div className="mt-5">{chart}</div></>}
+ {page==='intersection'&&<><div className="st-workspace">{map}{states}</div>{learn}</>}
+ {page==='statistics'&&<>{chart}<div className="mt-5">{states}</div></>}
+ {page==='connectivity'&&<section className="st-panel"><h2 className="flex items-center gap-2"><Wifi size={22}/> Conexión con la maqueta</h2><p className="mt-3 text-muted">Modo real aún no integrado. No hay conexión MQTT ni lecturas de hardware verificadas.</p><div className="st-lane"><span>ESP32 de sensores</span><span className="st-muted">Pendiente</span></div><div className="st-lane"><span>ESP32 de control</span><span className="st-muted">Pendiente</span></div><div className="st-lane"><span>Broker MQTT</span><span className="st-muted">Sin conectar</span></div><p className="mt-4 flex items-center gap-2 text-sm"><Activity size={18}/> Tiempo de simulación: {tick} s</p></section>}
+ {page==='learn'&&<>{learn}<div className="mt-5">{map}</div></>}
+ <footer className="st-footer">Smart Traffic · CCT-UNI · Open Day 2026 — Datos exclusivamente simulados.</footer></div></main></div>
 }
-
 export default App
