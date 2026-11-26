@@ -4,7 +4,7 @@
 ## 1. Identidad del proyecto
 
 - Producto: Smart Traffic.
-- Organización: CCT-UNI.
+- Organización: Centro Cultural de Telecomunicaciones (CCT-UNI).
 - Concepto visual: Urban Mobility Lab.
 - Público: escolares, estudiantes universitarios y visitantes.
 - Personalidad: tecnológica, dinámica, urbana, educativa y amigable.
@@ -30,11 +30,11 @@ Estas referencias son inspiración, no diseños para copiar.
 
 - Guinda institucional: #781D36
 - Dorado: #C9A45C
-- Fondo principal: #F7F7F3
-- Superficies: #FFFFFF
-- Texto principal: #20262D
-- Texto secundario: #69737D
-- Bordes: #E4E7EB
+- Fondo principal: #211E24
+- Superficies: #251E26
+- Texto principal: #F7F0E9
+- Texto secundario: #C4B8C1
+- Bordes: #674754
 
 ### Colores funcionales
 
@@ -67,7 +67,7 @@ Diseño desktop-first, adaptable a tablets y móviles.
 
 La pantalla principal debe incluir:
 
-- Barra lateral de navegación.
+- Navegación horizontal.
 - Encabezado superior.
 - Indicador del estado de conexión.
 - Selector de modo real o simulación.
@@ -84,9 +84,9 @@ del mismo tamaño.
 
 ## 6. Navegación
 
-- Resumen.
-- Intersección.
-- Estadísticas.
+- Simulador.
+- Explora.
+- Analiza.
 - Conectividad.
 - Aprende.
 
@@ -97,7 +97,7 @@ Se recomienda Lucide Icons.
 
 ### Tarjetas
 
-- Fondo blanco.
+- Superficie oscura neutra.
 - Bordes discretos de 1px.
 - Radio de borde entre 8px y 12px.
 - Sombras suaves o inexistentes.
@@ -274,3 +274,7 @@ integrantes que están comenzando a programar.
 
 Separar la presentación visual, la lógica de simulación
 y la comunicación con el hardware.
+
+## 15. Dirección visual V0.6
+
+Ciudad vectorial 2D desde arriba (SVG), con sombras discretas, vegetación natural, asfalto grafito, edificios crema y vehículos del mismo lenguaje visual. Evitar fondos urbanos fotorrealistas y efectos excesivos. Mantener el logo oficial y Smart Traffic tipográfico, sin referencias a eventos específicos. Priorizar mapa, estados y mascotas visibles en la primera pantalla cuando el tamaño lo permita. Las trayectorias son ilustrativas; no representan posiciones físicas medidas.
