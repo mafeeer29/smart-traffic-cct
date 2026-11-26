@@ -38,3 +38,24 @@
 @media(max-width:1050px){.st-sidebar{width:190px}.st-content{padding:16px}.st-hero{align-items:start}}
 @media(max-width:760px){.st-sidebar{width:100%;padding:12px}.st-brand{margin-bottom:10px}.st-content{padding:12px}.st-hero h1{font-size:25px}.st-workspace,.st-bottom{grid-template-columns:1fr}.st-metrics{grid-template-columns:1fr}.st-metric{border-right:0;border-bottom:1px solid #e4e7eb}.st-metric:last-child{border-bottom:0}.st-map{height:auto}.st-scenario{gap:6px}}
 @media(prefers-reduced-motion:reduce){.st-car-moving,.st-sensor{animation:none!important}}
+
+/* V0.3 / field operations: compact navigation, map-first console, editorial guide */
+.st-sidebar{width:205px;background:#40101e;padding:20px 13px}
+.st-brand{gap:8px;margin-bottom:32px}.st-brand-icon{width:36px;height:36px}.st-brand strong{font-size:18px;white-space:nowrap}.st-brand small{font-size:8px;letter-spacing:.7px;white-space:nowrap}
+.st-header{background:#f7f7f3;border-bottom:1px solid #dddcd5;min-height:36px;padding:7px 20px;font-size:11px}
+.st-content{padding:14px 20px 24px;max-width:none}
+.st-hero{margin-bottom:10px}.st-hero h1{font-size:28px;letter-spacing:-1.2px}.st-hero p{display:none}
+.st-scenario{padding:8px 0;border-top:1px solid #dddcd5;border-bottom:1px solid #dddcd5;margin-bottom:12px}
+.st-metrics{border:0;border-radius:0;background:transparent;margin-bottom:12px;grid-template-columns:repeat(3,minmax(0,1fr))}
+.st-metric{padding:4px 14px 4px 0;align-items:center;border-right:1px solid #d6d3ca;margin-right:14px}.st-metric:last-child{margin-right:0}.st-metric strong{font-size:26px;margin:0}.st-metric svg{opacity:.65}.st-metric .st-muted:last-child{font-size:10px}
+.st-workspace{grid-template-columns:minmax(0,1.8fr) minmax(260px,1fr);gap:12px}
+.st-map-panel{background:#29363b;color:#f6f5ee;border:0;padding:12px;overflow:hidden}
+.st-map-panel .st-muted{color:#c3ceca}.st-map-panel .text-brand-700{color:#e9cf97}
+.st-map{height:auto;max-height:clamp(245px,calc(100dvh - 380px),530px);aspect-ratio:4/3;background:transparent;margin:9px auto 0;width:auto;max-width:100%;border-radius:3px}
+.st-map-caption{color:#cbd5cf;justify-content:center;gap:12px;font-size:10px;margin-top:8px}
+.st-stack{gap:10px}.st-stack .st-panel{padding:12px}.st-lane{padding:6px 0}.st-timer{margin-top:7px;padding:5px 8px}.st-timer strong{font-size:22px}.st-decision{border-top:2px solid #781d36}.st-demand{margin:8px 0;gap:4px}
+.lab-below{margin-top:14px}.lab-guide{display:grid;grid-template-columns:1fr 1fr;background:#f1e9da;border:1px solid #ded5c4;border-radius:5px;overflow:hidden}.lab-guide-main,.lab-quiz{display:grid;grid-template-columns:100px minmax(0,1fr);align-items:center;gap:14px;padding:15px}.lab-quiz{border-left:1px solid #ded5c4;background:#faf7f0}.lab-guide img{width:100%;height:120px;object-fit:contain}.lab-kicker{font-size:10px;letter-spacing:1.1px;font-weight:800;color:#781d36}.lab-guide h2,.lab-guide h3{font-size:16px;font-weight:800;margin:5px 0}.lab-guide p{font-size:12px;line-height:1.5;color:#505a63}.lab-options{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0}.lab-options button{font-size:11px;border:1px solid #cdbda9;padding:6px 8px;border-radius:3px;background:white}.lab-options button[aria-pressed=true]{background:#781d36;color:white;border-color:#781d36}
+.lab-events>div{display:grid;grid-template-columns:65px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid #e4e7eb;font-size:12px}.lab-events time{font-family:'IBM Plex Mono',monospace;color:#781d36}.lab-events>div:last-child{border:0}
+.st-bottom{grid-template-columns:1fr 1fr}
+@media(max-width:1000px){.st-sidebar{width:184px}.st-brand strong{font-size:16px}.st-brand small{font-size:7px}.st-workspace{grid-template-columns:minmax(0,1.35fr) minmax(230px,1fr)}.lab-guide-main,.lab-quiz{grid-template-columns:70px 1fr;padding:10px}}
+@media(max-width:760px){.st-sidebar{width:100%}.st-brand{margin-bottom:10px}.st-content{padding:12px}.st-workspace,.st-bottom,.lab-guide{grid-template-columns:1fr}.st-map{width:100%;max-height:none;height:auto}.st-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}.st-metric{border-bottom:0;margin-right:5px;padding:4px}.st-metric svg,.st-metric .st-muted:last-child{display:none}.st-metric strong{font-size:20px}.lab-quiz{border-left:0;border-top:1px solid #ded5c4}}
