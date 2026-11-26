@@ -161,3 +161,15 @@
 @media(max-width:1100px){.editorial-shell .ed-simulator{grid-template-columns:minmax(170px,.7fr) minmax(0,2fr);gap:16px}.ed-simulator .ed-summary{grid-column:1/-1;grid-template-columns:1fr 1fr}.ed-simulator .ed-summary>.st-panel{grid-column:1/-1}}
 @media(max-width:720px){.editorial-shell .ed-simulator,.ed-simulator .ed-summary{grid-template-columns:1fr}.ed-sim-intro{padding-top:0}.ed-hero-mascots img{width:90px}}
 @media(prefers-reduced-motion:no-preference){.editorial-shell button{transition:background-color .18s,color .18s,border-color .18s}}
+
+/* Demonstration: compact and readable, including connectivity */
+.ed-network-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:26px 0 16px}
+.ed-network-flow article{position:relative;display:flex;flex-direction:column;gap:8px;padding:18px 12px;border-top:2px solid #c9a45c;background:#f1e8dc;border-radius:0 0 6px 6px}
+.ed-network-flow article svg{color:#781d36}.ed-network-flow article strong{font-size:14px}.ed-network-flow article small{font-size:12px;color:#655d5a}
+.ed-network-flow article:not(:last-child):after{content:'→';position:absolute;right:-12px;top:30px;color:#781d36;z-index:1}
+.editorial-shell .st-content{padding-top:clamp(18px,2.3vw,36px)}
+.editorial-shell .ed-simulator{grid-template-columns:minmax(155px,.68fr) minmax(0,2.65fr) minmax(220px,1fr);gap:clamp(12px,1.4vw,24px)}
+.ed-simulator .st-metric strong{font-size:clamp(18px,1.65vw,25px)}
+.ed-simulator .st-metrics{grid-template-columns:1fr;gap:0}.ed-simulator .st-metric{flex-direction:row;align-items:center;border-right:0;border-bottom:1px solid #e3d8cc;padding:8px 3px;gap:10px}.ed-simulator .st-metric:last-child{border-bottom:0}.ed-simulator .st-metric .st-muted:last-child{display:none}
+@media(max-width:1100px){.editorial-shell .ed-simulator{grid-template-columns:minmax(155px,.7fr) minmax(0,2fr)}.ed-simulator .st-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}.ed-simulator .st-metric{flex-direction:column;border:0;align-items:start}}
+@media(max-width:720px){.editorial-shell .ed-simulator{grid-template-columns:1fr}.ed-network-flow{grid-template-columns:1fr}.ed-network-flow article:not(:last-child):after{content:'↓';right:15px;top:auto;bottom:-16px}.ed-simulator .ed-summary{grid-template-columns:1fr}}
