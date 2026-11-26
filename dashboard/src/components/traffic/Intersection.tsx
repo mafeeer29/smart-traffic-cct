@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import type { Lane } from '../../types/traffic'
 const colors = { verde: '#36d77a', amarillo: '#f4c542', rojo: '#fa5252' }
 function Tree({x,y}:{x:number;y:number}) {
@@ -6,7 +7,7 @@ function Tree({x,y}:{x:number;y:number}) {
 function Building({x,y,w,h,color}:{x:number;y:number;w:number;h:number;color:string}) {
  return <g transform={'translate('+x+' '+y+')'}><rect x="5" y="6" width={w} height={h} rx="2" fill="#243b3b25"/><rect width={w} height={h} rx="2" fill={color} stroke="#9c9385"/><rect x="5" y="5" width={w-10} height={h-10} fill="none" stroke="#fff8" strokeWidth="2"/><rect x={w/2-7} y={h/2-5} width="14" height="10" fill="#a5a49b"/></g>
 }
-export default function Intersection({lanes,demand,running}:{lanes:Lane[];demand:number[];running:boolean}) {
+function OriginalIntersection({lanes,demand,running}:{lanes:Lane[];demand:number[];running:boolean}) {
  return <svg viewBox="0 0 640 480" role="img" aria-label="Mapa urbano ilustrado; estados simulados de cuatro semáforos" className="st-map">
  <defs><pattern id="pavers" width="9" height="9" patternUnits="userSpaceOnUse"><path d="M0 0H9V9" fill="none" stroke="#c8c6ba" strokeWidth=".5"/></pattern></defs>
  <rect width="640" height="480" fill="#d8d7c8"/>
@@ -40,4 +41,18 @@ export default function Intersection({lanes,demand,running}:{lanes:Lane[];demand
  <g fontSize="10" fontWeight="700" letterSpacing="1.2" fill="#4e6252"><text x="22" y="145">PARQUE CENTRAL</text><text x="427" y="145">ZONA COMERCIAL</text><text x="20" y="342">BARRIO RESIDENCIAL</text><text x="426" y="338">ÁREA DEPORTIVA</text></g>
  <g fill="#fff" fontSize="13" fontWeight="700" textAnchor="middle"><text x="320" y="17">N</text><text x="320" y="473">S</text><text x="12" y="233">O</text><text x="628" y="233">E</text></g>
  </svg>
+}
+
+const routes=[{start:[640,28],stop:[430,153],end:[-25,405],label:[585,58],sensor:[452,128]},{start:[-25,452],stop:[203,318],end:[665,50],label:[55,428],sensor:[184,333]},{start:[665,416],stop:[438,286],end:[-25,24],label:[585,404],sensor:[458,299]},{start:[-25,54],stop:[200,185],end:[665,454],label:[55,63],sensor:[180,172]}]
+export default function Intersection(props:{lanes:Lane[];demand:number[];running:boolean}){
+ const [missing,setMissing]=useState(false)
+ if(missing)return <OriginalIntersection {...props}/>
+ return <div className="iso-city"><img src={import.meta.env.BASE_URL+'visual/city.webp'} onError={()=>setMissing(true)} alt="Ciudad isométrica con cuatro vías, parque, comercios, viviendas y cancha"/>
+ <svg viewBox="0 0 640 480" className="iso-overlay" aria-label="Semáforos y sensores simulados">
+ {props.lanes.map((lane,i)=>{const r=routes[i], color=colors[lane.signal];return <g key={lane.direction}>
+ <path d={'M'+r.start.join(',')+' L'+r.stop.join(',')} stroke={color} strokeWidth="2" strokeDasharray="7 10" opacity=".65" fill="none"/>
+ {Array.from({length:Math.min(props.demand[i],4)},(_,j)=>{const t=.88-j*.20;const x=r.start[0]+(r.stop[0]-r.start[0])*t,y=r.start[1]+(r.stop[1]-r.start[1])*t;const angle=Math.atan2(r.end[1]-r.start[1],r.end[0]-r.start[0])*180/Math.PI;return <g key={j} transform={'translate('+x+' '+y+')'}><g transform={'rotate('+angle+')'}><rect x="-13" y="-7" width="26" height="14" rx="4" fill={['#e8b75c','#b63d52','#a0c9db','#eee'][j]} stroke="#20262d"/><rect x="-5" y="-5" width="8" height="10" rx="2" fill="#25353d"/><path d="M11 -5v3m0 4v3" stroke="#fff3be" strokeWidth="2"/></g>{props.running&&lane.signal==='verde'&&<animateTransform attributeName="transform" type="translate" from={x+' '+y} to={r.end.join(' ')} dur={(3+j*.65)+'s'} repeatCount="indefinite"/>}</g>})}
+ <g transform={'translate('+r.sensor.join(' ')+')'}><circle r="14" fill="#0d242a" stroke="#6ce4dc" opacity=".85"/>{lane.detected&&<circle r="22" fill="none" stroke="#6ce4dc" strokeWidth="2" className={props.running?'st-sensor':''}/>}<path d="M-7 -2Q0 -10 7 -2M-4 2Q0 -3 4 2" fill="none" stroke="#6ce4dc" strokeWidth="2"/><circle cy="5" r="1.8" fill="#6ce4dc"/></g>
+ <g transform={'translate('+r.label.join(' ')+')'}><rect x="-28" y="-14" width="56" height="28" rx="6" fill="#19191fe8" stroke={color}/><circle cx="-17" r="4" fill={color}/><text x="5" y="4" fill="white" fontSize="10" textAnchor="middle" fontWeight="700">{lane.direction}</text></g>
+ </g>})}</svg></div>
 }
